@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>개발자 키우기</title>
+</head>
+<body>
+	<style>
+		/* wrap(인트로/게임진행/엔딩) - intro/play/ending */
+		[data-wrap] [data-sec]{display:none;}
+		[data-wrap="intro"] [data-sec="intro"]{display:block;}
+		[data-wrap="play"] [data-sec="play"]{display:block;}
+		[data-wrap="ending"] [data-sec="ending"]{display:block;}
+
+		/* play(게임진행) - main/eat/study/gym/clean */
+		[data-vis-wrap] [data-vis]{display:none;}
+		[data-vis-wrap="main"] [data-vis="main"]{display:block;}
+		[data-vis-wrap="eat"] [data-vis="eat"]{display:block;}
+		[data-vis-wrap="study"] [data-vis="study"]{display:block;}
+		[data-vis-wrap="gym"] [data-vis="gym"]{display:block;}
+		[data-vis-wrap="clean"] [data-vis="clean"]{display:block;}
+	</style>
+
+
+	<div id="damagochi_wrap" data-wrap="intro">
+		<div class="inner">
+			<section data-sec="intro">
+				<h1>개발자 키우기</h1>
+				<p>개발자 이름을 입력해주세요.</p>
+
+				<label for="username" hidden>개발자 이름: </label>
+				<input type="text" id="username" name="username" placeholder="ex&rpar; 홍길동" />
+				<button type="button" data-btn="start">시작하기</button>
+			</section>
+
+
+			<section data-sec="play">
+				<div id="visual_wrap" data-vis-wrap="main">
+					<div data-vis="main">메인 - 이미지(background-image)</div>
+					<div data-vis="eat">밥먹기 - 이미지(background-image)</div>
+					<div data-vis="study">공부하기 - 이미지(background-image)</div>
+					<div data-vis="gym">운동하기 - 이미지(background-image)</div>
+					<div data-vis="clean">청소하기 - 이미지(background-image)</div>
+				</div>
+
+				<div id="button_wrap">
+					<button type="button" data-btn="eat">밥먹기</button>
+					<button type="button" data-btn="study">공부하기</button>
+					<button type="button" data-btn="gym">운동하기</button>
+					<button type="button" data-btn="clean">청소하기</button>
+				</div>
+			</section>
+
+
+			<section data-sec="ending">
+				<div data-vis="ending">개발자 취업됨</div>
+			</section>
+		</div>
+	</div>
+
+
+	<script>
+		document.addEventListener("DOMContentLoaded", () =>{
+			let hpPoint = 100; //체력 포인트(0~100): 0이되면 초기화
+
+			//경험치 포인트(0~100), 3단계: 공부하기(study), 운동하기(gym) 진행 시 
+			//0~30: 하수단계
+			//31~60: 중수단계
+			//61~99: 고수단계
+			//100: ending 
+			let exPoint = 0;
+
+			
+			const mainButtons = document.querySelectorAll("[data-sec='play'] [data-btn]");
+			for(const button of mainButtons){
+        button.addEventListener('click', (event) =>{
+					//console.log(event.target);
+					
+					if(button.dataset.btn === 'eat'){
+						eatFnc();
+
+					}else if(button.dataset.btn === 'study'){
+						studyFnc();
+
+					}else if(button.dataset.btn === 'gym'){
+						gymFnc();
+
+					}else if(button.dataset.btn === 'clean'){
+						cleanFnc();
+					}
+        });
+      }
+
+
+			//초기화 함수
+			function initFnc(){
+				hpPoint = 100;
+				exPoint = 0;
+			}
+
+			//밥먹기 함수
+			function eatFnc(){
+				console.log('밥먹기 함수 연결');
+			}
+
+			//공부하기 함수
+			function studyFnc(){
+				console.log('공부하기 함수 연결');
+			}
+
+			//운동하기 함수
+			function gymFnc(){
+				console.log('운동하기 함수 연결');
+			}
+
+			//청소하기 함수
+			function cleanFnc(){
+				console.log('청소하기 함수 연결');
+			}
+
+			//엔딩 함수
+			function endingFnc(){
+
+			}
+
+
+
+
+
+    });
+	</script>
+
+</body>
+</html>
